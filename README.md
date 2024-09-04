@@ -1,6 +1,6 @@
-# 🌟🔥 Pokémon Grid: The Ultimate Code Adventure! 🔥🌟
+# 🌟🔥 Pokémon Adventure! 🔥🌟
 
-Hey there, future Pokémon Coding Champion! 🏆 Ready to evolve your skills and catch 'em all in pixels? Let's GO! 🚀💻
+Hey there, future Pokémon Coding Champion! 🏆 Ready to catch 'em all ? Let's GO! 🚀💻
 
 ## 🎮 Quick Start: Power Up Your Poké-Project! 💪
 
