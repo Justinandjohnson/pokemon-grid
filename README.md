@@ -1,6 +1,6 @@
 # 🌟🔥 Pokémon Adventure! 🔥🌟
 
-Hey there, future Pokémon Coding Champion! 🏆 Ready to catch 'em all ? Let's GO! 🚀💻
+Hey there, future Pokémon Champion! 🏆 Ready to catch 'em all ? Let's GO! 🚀💻
 
 ## 🎮 Quick Start: Power Up Your Poké-Project! 💪
 
