@@ -62,7 +62,7 @@ function PokemonGrid({ onSelectPokemon }: PokemonGridProps) {
 
   useEffect(() => {
     fetchPokemon();
-  }, []);
+  }, [fetchPokemon]);
 
   // Function to determine weight color
   const getWeightColor = (weight: number) => {
@@ -91,7 +91,7 @@ function PokemonGrid({ onSelectPokemon }: PokemonGridProps) {
           className="bg-gray-800 p-4 rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer group relative overflow-hidden"
           onClick={() => onSelectPokemon(p.id)}
         >
-          <Link to={`/pokemon/${p.id}`} className="block relative">
+          <Link to={`/pokemon/${p.id}`}>
             <img src={p.image} alt={p.name} className="w-full h-40 object-contain mb-2 relative z-10" />
             <h2 className="text-center text-lg font-semibold capitalize text-white relative z-10">{p.name}</h2>
           </Link>

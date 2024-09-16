@@ -5,8 +5,12 @@ import PokemonDetail from './PokemonDetail';
 import { HoverChatbot } from './HoverChatbot';
 
 function App() {
-  const [selectedPokemonId, setSelectedPokemonId] = useState<number | null>(null);
   const [isChatOpen, setIsChatOpen] = useState(true);
+  const [selectedPokemonId, setSelectedPokemonId] = useState<number | null>(null);
+
+  const handleSelectPokemon = (id: number | null) => {
+    setSelectedPokemonId(id);
+  };
 
   return (
     <Router>
@@ -17,12 +21,8 @@ function App() {
           </header>
           <main className="p-4">
             <Routes>
-              <Route path="/" element={
-                <PokemonGrid onSelectPokemon={setSelectedPokemonId} />
-              } />
-              <Route path="/pokemon/:id" element={
-                <PokemonDetail onSelectPokemon={setSelectedPokemonId} />
-              } />
+              <Route path="/" element={<PokemonGrid onSelectPokemon={handleSelectPokemon} />} />
+              <Route path="/pokemon/:id" element={<PokemonDetail onSelectPokemon={handleSelectPokemon} />} />
             </Routes>
           </main>
         </div>
