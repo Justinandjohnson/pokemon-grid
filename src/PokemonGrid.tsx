@@ -66,20 +66,19 @@ function PokemonGrid({ onSelectPokemon }: PokemonGridProps) {
 
   // Function to determine weight color
   const getWeightColor = (weight: number) => {
-    // Assuming weight range from 0 to 1000 (adjust as needed)
     const percentage = Math.min(weight / 1000, 1);
     const red = Math.round(255 * (1 - percentage));
     const green = Math.round(255 * percentage);
     return `rgb(${red}, ${green}, 0)`;
   };
 
-  // Function to determine height color
+  // Updated function to determine height color
   const getHeightColor = (height: number) => {
-    // Assuming height range from 0 to 20 meters (adjust as needed)
     const percentage = Math.min(height / 200, 1); // height is in decimeters
-    const blue = Math.round(255 * (1 - percentage));
-    const orange = Math.round(255 * percentage);
-    return `rgb(${orange}, ${Math.round(orange/2)}, ${blue})`;
+    const r = Math.round(135 + (120 * percentage)); // 135 to 255
+    const g = Math.round(206 + (49 * percentage));  // 206 to 255
+    const b = Math.round(235 - (185 * percentage)); // 235 to 50
+    return `rgb(${r}, ${g}, ${b})`;
   };
 
   return (
