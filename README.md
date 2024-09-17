@@ -1,6 +1,7 @@
 # 🌟🔥 AI-Enhanced Pokémon Adventure! 🔥🌟
 
 Hey there, future Pokémon Champion! 🏆 Ready to catch 'em all and chat with an AI Pokémon expert? Let's GO! 🚀💻
+DEMO-----[https://pokedexai.netlify.app/]
 
 ## 🎮 Quick Start: Power Up Your Poké-Project! 💪
 
