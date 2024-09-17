@@ -1,0 +1,8 @@
+{
+  "functions": [
+    {
+      "function": "ai-chat",
+      "path": "/api/chat"
+    }
+  ]
+}

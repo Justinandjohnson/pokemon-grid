@@ -1,44 +1,37 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
-interface Message {
-  text: string;
-  isUser: boolean;
-}
-
-export function PokemonChatbot() {
-  const [question, setQuestion] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
+const PokemonChatbot: React.FC = () => {
+  const [input, setInput] = useState('');
+  const [messages, setMessages] = useState<{ text: string; isUser: boolean }[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!question.trim()) return;
+    if (!input.trim()) return;
 
-    const userMessage: Message = { text: question, isUser: true };
-    setMessages(prevMessages => [...prevMessages, userMessage]);
-    setQuestion('');
+    setMessages(prev => [...prev, { text: input, isUser: true }]);
+    setInput('');
     setIsLoading(true);
 
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/chat`, {
-        model: "claude-3-opus-20240229",
-        max_tokens: 1000,
-        temperature: 0.7,
-        system: "You are a helpful assistant knowledgeable about Pokemon. Answer the user's question to the best of your ability.",
-        messages: [
-          { role: "user", content: question }
-        ]
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: input }),
       });
 
-      const botMessage: Message = { text: response.data.content[0].text, isUser: false };
-      setMessages(prevMessages => [...prevMessages, botMessage]);
+      if (!response.ok) {
+        throw new Error('Failed to get response from AI');
+      }
+
+      const data = await response.json();
+      setMessages(prev => [...prev, { text: data.response, isUser: false }]);
     } catch (error) {
-      console.error('Error fetching answer:', error);
-      const errorMessage: Message = { text: 'Sorry, I couldn\'t get an answer. Please try again.', isUser: false };
-      setMessages(prevMessages => [...prevMessages, errorMessage]);
+      console.error('Error:', error);
+      setMessages(prev => [...prev, { text: 'Sorry, there was an error processing your request.', isUser: false }]);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -61,8 +54,8 @@ export function PokemonChatbot() {
       <form onSubmit={handleSubmit} className="flex space-x-2">
         <input
           type="text"
-          value={question}
-          onChange={(e) => setQuestion(e.target.value)}
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about Pokémon..."
           className="flex-grow px-3 py-2 bg-gray-800 text-white border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
@@ -76,4 +69,6 @@ export function PokemonChatbot() {
       </form>
     </div>
   );
-}
+};
+
+export default PokemonChatbot;

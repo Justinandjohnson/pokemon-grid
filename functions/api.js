@@ -11,6 +11,9 @@ app.use(express.json());
 
 const apiKey = process.env.ANTHROPIC_API_KEY;
 
+console.log('ANTHROPIC_API_KEY:', apiKey ? 'Set' : 'Not set');
+console.log('REACT_APP_API_URL:', process.env.REACT_APP_API_URL);
+
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages, model, max_tokens } = req.body;

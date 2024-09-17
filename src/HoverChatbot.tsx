@@ -1,5 +1,5 @@
 import React from 'react';
-import { PokemonChatbot } from './PokemonChatbot';
+import PokemonChatbot from './PokemonChatbot';
 
 interface HoverChatbotProps {
   isOpen: boolean;

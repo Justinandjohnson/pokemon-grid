@@ -1,9 +1,23 @@
 [build]
-  command = "CI=false npm run build"
+  command = "npm run build"
   publish = "build"
 
+[build.environment]
+  CI = "false"
+  REACT_APP_API_URL = "/.netlify/functions/api"
+
+[[edge_functions]]
+  function = "ai-chat"
+  path = "/api/chat"
+
+[dev]
+  command = "npm run start"
+  port = 8888
+  targetPort = 3000
+  framework = "create-react-app"
+
 [functions]
-  directory = "functions"
+  directory = "netlify/functions"
 
 [[redirects]]
   from = "/api/*"
@@ -14,9 +28,3 @@
   from = "/*"
   to = "/index.html"
   status = 200
-
-[build.environment]
-  REACT_APP_API_URL = "/.netlify/functions/api"
-
-[[plugins]]
-  package = "./netlify/plugins/log-env"
