@@ -9,6 +9,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+const apiKey = process.env.ANTHROPIC_API_KEY;
+
 app.post('/api/chat', async (req, res) => {
   try {
     const { messages, model, max_tokens } = req.body;
@@ -24,7 +26,7 @@ app.post('/api/chat', async (req, res) => {
     }, {
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'x-api-key': apiKey,
         'anthropic-version': '2023-06-01'
       }
     });
